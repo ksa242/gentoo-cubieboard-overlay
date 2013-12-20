@@ -1,0 +1,2 @@
+ACTION=="add|change", KERNEL=="mali", MODE="0664", GROUP="video"
+ACTION=="add|change", KERNEL=="ump", MODE="0664", GROUP="video"

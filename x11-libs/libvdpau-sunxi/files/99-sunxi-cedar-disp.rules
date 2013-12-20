@@ -1,0 +1,2 @@
+ACTION=="add|change", KERNEL=="cedar_dev", MODE="0666"
+ACTION=="add|change", KERNEL=="disp", MODE="0666"
