@@ -31,6 +31,10 @@ x11-libs/libvdpau-sunxi
     Homepage:    https://github.com/linux-sunxi/libvdpau-sunxi
     Description: Experimental VDPAU for Allwinner sunxi SoCs
 
+x11-libs/limadriver
+    Homepage:    https://gitorious.org/lima/
+    Description: Free software graphics driver for the ARM Mali GPUs
+
 x11-libs/sunxi-mali
     Homepage:    https://github.com/linux-sunxi/sunxi-mali
     Description: Sunxi Mali-400 support libraries
