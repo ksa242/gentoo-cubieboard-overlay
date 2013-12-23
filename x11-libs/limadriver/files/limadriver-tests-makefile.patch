@@ -1,0 +1,8 @@
+--- limare/tests/Makefile
++++ limare/tests/Makefile
+@@ -28,3 +28,5 @@
+ 
+ clean: MAKE = make clean
+ clean: $(DIRS)
++
++install:

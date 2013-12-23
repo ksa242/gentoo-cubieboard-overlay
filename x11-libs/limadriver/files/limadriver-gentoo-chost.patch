@@ -1,0 +1,11 @@
+--- Makefile.inc
++++ Makefile.inc
+@@ -17,6 +17,8 @@
+ 	OS = gnu
+ else ifeq ($(triplet), arm-linux-gnueabihf)
+ 	OS = gnu
++else ifeq ($(triplet), armv7a-hardfloat-linux-gnueabi)
++	OS = gnu
+ endif
+ 
+ ifndef OS
