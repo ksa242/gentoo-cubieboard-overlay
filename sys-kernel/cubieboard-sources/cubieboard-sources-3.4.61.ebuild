@@ -22,9 +22,10 @@ EGIT_CHECKOUT_DIR="$S"
 DESCRIPTION="Linux source for Allwinner/Boxchip F20 (sun3i), A10 (sun4i) and A12/A13 (sun5i) SoCs"
 HOMEPAGE="https://github.com/cubieboard/linux-sunxi"
 
-KEYWORDS=""
+KEYWORDS="~arm"
 
-src_unpack() {
+src_unpack()
+{
 	git-r3_src_unpack
 	unpack_set_extraversion
 }
