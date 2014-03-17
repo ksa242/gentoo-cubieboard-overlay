@@ -6,3 +6,39 @@
  clean: $(DIRS)
 +
 +install:
+
+--- limare/tests/Makefile.egl
++++ limare/tests/Makefile.egl
+@@ -7,7 +7,7 @@ EGL_OBJS = egl.o ../common/egl_common.o $(objs)
+ ifeq ($(OS), android)
+ 	EGL_LIBS = -lEGL_mali -lGLESv2_mali
+ else
+-	EGL_LIBS = -lEGL -lGLESv2 -lrt
++	EGL_LIBS = -lEGL -lGLESv2 -lGL -lX11 -lm -lrt
+ endif
+ 
+ egl: egl_$(NAME)
+
+--- limare/tests/Makefile.gles1
++++ limare/tests/Makefile.gles1
+@@ -7,7 +7,7 @@ GLES1_OBJS = gles1.o ../common/egl_common.o $(objs)
+ ifeq ($(OS), android)
+ 	GLES1_LIBS = -lEGL_mali -lGLESv1_CM
+ else
+-	GLES1_LIBS = -lEGL -lGLESv1_CM -lrt
++	GLES1_LIBS = -lEGL -lGLESv1_CM -lGL -lX11 -lm -lrt
+ endif
+ 
+ gles1: gles1_$(NAME)
+
+--- limare/tests/Makefile.limare
++++ limare/tests/Makefile.limare
+@@ -8,7 +8,7 @@ LIMARE_OBJS = limare.o $(objs)
+ limare: limare_$(NAME)
+ 
+ limare_$(NAME): $(LIMARE_OBJS)
+-	$(CC) $(CFLAGS) -o $@ $^ -L$(TOP)/limare/lib/ -llimare
++	$(CC) $(CFLAGS) -o $@ $^ -L$(TOP)/limare/lib/ -lm -llimare
+ 
+ limare_install: limare_$(NAME)
+ 	$(INSTALL) limare_$(NAME) $(INSTALL_DIR)/limare/$(NAME)
