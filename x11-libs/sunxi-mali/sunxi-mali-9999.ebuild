@@ -43,6 +43,7 @@ src_install() {
 
 	dosym ../../xorg-x11/lib/libGL.so "${DESTTREE}/lib/libGL.so"
 	dosym ../../xorg-x11/lib/libGL.so "${DESTTREE}/lib/libGL.so.1"
+	dosym ../../xorg-x11/include/GL "${DESTTREE}/include/GL"
 
 	if ! declare -p DOCS &>/dev/null ; then
 		local d
@@ -56,5 +57,6 @@ src_install() {
 		dodoc ${DOCS}
 	fi
 
-	elog "Run 'eselect opengl set mali' manually to switch to the installed libs."
+	elog "Run 'eselect opengl set mali' manually to use the installed libs."
+	elog "Do not forget to switch back to xorg-x11 before emerging x11-apps/mesa-progs!"
 }
