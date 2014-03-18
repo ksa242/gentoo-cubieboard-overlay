@@ -32,11 +32,17 @@ src_compile() {
 }
 
 src_install() {
-	mkdir -p "${ED}${DESTTREE}/lib"
+    mali_prefix=/usr/lib/opengl/mali/
+
+	into ${mali_prefix}
+	dodir "${DESTTREE}/lib" "${DESTTREE}/include" "${DESTTREE}/extensions"
 
 	if [[ -f Makefile || -f GNUmakefile || -f makefile ]] ; then
-		emake DESTDIR="${D}" install
+		emake "DESTDIR=${D}" "prefix=${mali_prefix}/" install
 	fi
+
+	dosym ../../xorg-x11/lib/libGL.so "${DESTTREE}/lib/libGL.so"
+	dosym ../../xorg-x11/lib/libGL.so "${DESTTREE}/lib/libGL.so.1"
 
 	if ! declare -p DOCS &>/dev/null ; then
 		local d
@@ -49,4 +55,6 @@ src_install() {
 	else
 		dodoc ${DOCS}
 	fi
+
+	elog "Run 'eselect opengl set mali' manually to switch to the installed libs."
 }
