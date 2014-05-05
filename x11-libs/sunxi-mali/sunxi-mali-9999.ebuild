@@ -42,8 +42,7 @@ src_install() {
 	dosym ../../xorg-x11/lib/libGL.so "${mali_root}/lib/libGL.so.1"
 	dosym ../../xorg-x11/include/GL "${mali_root}/include/GL"
 
-#	dosym "${mali_root}/lib/libUMP.so" "${DESTTREE}/lib/libUMP.so" 
-#	dosym "${mali_root}/lib/libMali.so" "${DESTTREE}/lib/libMali.so" 
+	dosym "${mali_root}/lib/libMali.so" "${DESTTREE}/lib/libMali.so"
 
 	if [[ $(declare -p DOCS) == "declare -a "* ]] ; then
 		dodoc "${DOCS[@]}"
