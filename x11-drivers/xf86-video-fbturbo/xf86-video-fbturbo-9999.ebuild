@@ -7,14 +7,18 @@ inherit xorg-2 git-r3
 
 EGIT_REPO_URI="git://github.com/ssvb/xf86-video-fbturbo.git"
 
-DESCRIPTION="Xorg DDX driver for Allwinner A10/A13 and other ARM devices"
+DESCRIPTION="Xorg DDX driver for Allwinner A10/A13,A20 and other ARM devices"
 HOMEPAGE="https://github.com/ssvb/xf86-video-fbturbo"
 
 KEYWORDS=""
-IUSE=""
+IUSE="gles1 gles2 mali-r3p2"
+
+use mali-r3p2 && EGIT_BRANCH="mali-r3p2-support"
 
 RDEPEND="x11-base/xorg-server"
 DEPEND="${RDEPEND}
+	gles1? ( x11-libs/sunxi-mali )
+	gles2? ( x11-libs/sunxi-mali )
 	x11-proto/fontsproto
 	x11-proto/randrproto
 	x11-proto/renderproto
