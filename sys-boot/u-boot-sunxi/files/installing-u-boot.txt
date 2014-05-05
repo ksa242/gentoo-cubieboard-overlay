@@ -1,0 +1,23 @@
+
+# Installing u-boot.
+
+The region with offset 8K and size 32K contains the SPL initial loader, so
+let's
+write that away to the disk:
+
+```
+dd if=u-boot-sunxi/spl/sunxi-spl.bin of=${disk} bs=1024 seek=8
+```
+
+The next region of 512K contains u-boot:
+
+```
+dd if=u-boot-sunxi/u-boot.img of=${disk} bs=1024 seek=40
+```
+
+Finally, the next 128K contains the environment, let's clear that:
+
+```
+dd if=/dev/zero of=${disk} bs=1024 count=128 seek=552
+```
+
