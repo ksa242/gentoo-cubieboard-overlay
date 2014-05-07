@@ -14,7 +14,7 @@
  	EGL_LIBS = -lEGL_mali -lGLESv2_mali
  else
 -	EGL_LIBS = -lEGL -lGLESv2 -lrt
-+	EGL_LIBS = -lEGL -lGLESv2 -lGL -lX11 -lm -lrt
++	EGL_LIBS = -lEGL -lGLESv2 -lX11 -lm -lrt
  endif
  
  egl: egl_$(NAME)
@@ -26,7 +26,7 @@
  	GLES1_LIBS = -lEGL_mali -lGLESv1_CM
  else
 -	GLES1_LIBS = -lEGL -lGLESv1_CM -lrt
-+	GLES1_LIBS = -lEGL -lGLESv1_CM -lGL -lX11 -lm -lrt
++	GLES1_LIBS = -lEGL -lGLESv1_CM -lGLESv2 -lX11 -lm -lrt
  endif
  
  gles1: gles1_$(NAME)
