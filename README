@@ -3,26 +3,32 @@ Cubieboard/Cubietruck Gentoo Overlay
 
 The overlay includes ebuilds for the following packages:
 
-sys-boot/u-boot-sunxi
-    Homepage:    https://github.com/linux-sunxi/u-boot-sunxi
-    Description: u-boot for Allwinner sunxi series of SoCs
-                 (A10, A13, A10s, and A20)
-
-sys-kernel/cubieboard-sources
-    Homepage:    https://github.com/cubieboard/linux-sunxi
-    Description: Linux source for Allwinner/Boxchip F20 (sun3i),
-                 A10 (sun4i) and A12/A13 (sun5i) SoCs
-
-virtual/linux-sources
-    Description: Virtual for Linux kernel sources
-
 dev-embedded/sunxi-tools
     Homepage:    https://github.com/linux-sunxi/sunxi-tools
     Description: Tools to help hacking Allwinner A10 devices
 
+media-libs/mesa
+    Homepage:    http://mesa3d.sourceforge.net/
+    Description: OpenGL-like graphic library for Linux
+
+sys-boot/u-boot-sunxi
+    Homepage:    https://github.com/linux-sunxi/u-boot-sunxi
+    Description: u-boot for Allwinner sunxi series of SoCs (A10, A13, A10s, and A20)
+
+sys-kernel/cubieboard-sources
+    Homepage:    https://github.com/cubieboard/linux-sunxi
+    Description: Linux source for Allwinner/Boxchip F20 (sun3i), A10 (sun4i) and A12/A13 (sun5i) SoCs
+
+virtual/linux-sources
+    Description: Virtual for Linux kernel sources
+
 x11-base/xorg-drivers
     Homepage:    http://www.gentoo.org/
     Description: Meta package containing deps on all xorg drivers
+
+x11-base/xorg-server
+    Homepage:    http://xorg.freedesktop.org/
+    Description: X.Org X servers
 
 x11-drivers/xf86-video-fbturbo
     Homepage:    https://github.com/ssvb/xf86-video-fbturbo
