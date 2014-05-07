@@ -21,10 +21,10 @@ IUSE="${IUSE_SUNXI_BOARD}"
 REQUIRED_USE="^^ ( ${IUSE_SUNXI_BOARD} )"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-common-makefile.patch"
+	emake distclean
 }
 
-src_compile() {
+src_configure() {
 	if use sunxi_board_cubieboard; then
 		board="Cubieboard"
 	elif use sunxi_board_cubieboard2; then
@@ -34,11 +34,11 @@ src_compile() {
 	else
 		die "Please choose your board."
 	fi
-	emake "CROSS_COMPILE=${CHOST}-" "LDFLAGS=" ${board}
+	emake ${board}_config
 }
 
 src_install() {
 	insinto "/usr/share/${PF}"     && doins u-boot-sunxi-with-spl.bin u-boot.bin
 	insinto "/usr/share/${PF}/spl" && doins spl/sunxi-spl.bin
-	dodoc doc/README.*
+	dodoc doc/README.* "${FILESDIR}/installing-u-boot.txt"
 }

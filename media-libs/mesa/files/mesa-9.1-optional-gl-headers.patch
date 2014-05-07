@@ -1,0 +1,52 @@
+diff --git a/configure.ac b/configure.ac
+index 550ee05..9b7230d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -994,8 +994,10 @@ yes)
+             AC_MSG_ERROR([DRI driver directory '$driver' does not exist])
+     done
+     DRI_DIRS="$dri_drivers"
+-    if test -n "$DRI_DIRS" -a "x$enable_opengl" != xyes; then
+-        AC_MSG_ERROR([--with-dri-drivers requires OpenGL])
++    if test -n "$DRI_DIRS"; then
++        if "x$enable_opengl" != xyes -a "x$enable_egl" != xyes; then
++            AC_MSG_ERROR([--with-dri-drivers requires OpenGL or EGL])
++        fi
+     fi
+     ;;
+ esac
+@@ -1469,7 +1471,7 @@ AC_SUBST([LLVM_INCLUDEDIR])
+ AC_SUBST([LLVM_VERSION])
+ AC_SUBST([CLANG_RESOURCE_DIR])
+ 
+-case "x$enable_opengl$enable_gles1$enable_gles2" in
++case "x$enable_opengl" in
+ x*yes*)
+     EGL_CLIENT_APIS="$EGL_CLIENT_APIS "'$(GL_LIB)'
+     HAVE_OPENGL=yes
+diff --git a/src/mesa/Makefile.am b/src/mesa/Makefile.am
+index 41483dd..be70b92 100644
+--- a/src/mesa/Makefile.am
++++ b/src/mesa/Makefile.am
+@@ -25,8 +25,10 @@ endif
+ 
+ SUBDIRS = program x86 x86-64 . $(DRICORE_SUBDIR) drivers
+ 
++if HAVE_OPENGL
+ gldir = $(includedir)/GL
+ gl_HEADERS = $(top_srcdir)/include/GL/*.h
++endif
+ 
+ .PHONY: main/git_sha1.h.tmp
+ main/git_sha1.h.tmp:
+@@ -128,8 +130,10 @@ libmesagallium_la_LIBADD = \
+         $(top_builddir)/src/mesa/program/libprogram.la \
+         $()
+ 
++if HAVE_OPENGL
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = gl.pc
++endif
+ 
+ # Emacs tags
+ tags:
