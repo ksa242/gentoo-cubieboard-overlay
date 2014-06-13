@@ -113,7 +113,7 @@ src_install() {
 	into /usr
 	newbin test/test mali-test-example
 
-    # udev rules to get the right ownership/permission for /dev/ump and /dev/mali
+	# udev rules to get the right ownership/permission for /dev/ump and /dev/mali
 	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/99-sunxi-mali.rules
 
@@ -132,7 +132,7 @@ pkg_postinst() {
 	elog
 	elog "To use the Mali OpenGL ES libraries, run \"eselect opengl set mali\""
 	elog
-	elog "x11-apps/mesa-progs probably would not build due to missing libGL."
+	elog "Some packages, for example x11-apps/mesa-progs and x11-libs/cairo, probably would not build due to missing libGL and/or GL headers."
 }
 
 pkg_prerm() {

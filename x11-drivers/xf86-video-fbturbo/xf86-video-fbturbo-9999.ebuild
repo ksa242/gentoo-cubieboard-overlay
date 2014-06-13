@@ -1,17 +1,14 @@
-# Copyright 1999-2013 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
 EAPI=5
 
 inherit xorg-2 git-r3
 
 EGIT_REPO_URI="git://github.com/ssvb/xf86-video-fbturbo.git"
 
-DESCRIPTION="Xorg DDX driver for Allwinner A10/A13,A20 and other ARM devices"
+DESCRIPTION="Xorg DDX driver for Allwinner A10/A13/A20 and other ARM devices"
 HOMEPAGE="https://github.com/ssvb/xf86-video-fbturbo"
 
 KEYWORDS=""
-IUSE="gles1 gles2 mali-r3p2"
+IUSE="gles1 gles2 -mali-r3p2"
 
 use mali-r3p2 && EGIT_BRANCH="mali-r3p2-support"
 
@@ -28,4 +25,31 @@ DEPEND="${RDEPEND}
 	x11-libs/libdrm
 	x11-libs/pixman"
 
-DOCS=( COPYING README xorg.conf )
+DOCS=( COPYING README xorg.conf "${FILESDIR}"/99-sunxi-g2d.rules )
+
+src_install() {
+	if [[ -f Makefile || -f GNUmakefile || -f makefile ]] ; then
+		emake DESTDIR="${D}" install
+	fi
+
+	if ! declare -p DOCS &>/dev/null ; then
+		local d
+		for d in README* ChangeLog AUTHORS NEWS TODO CHANGES \
+				THANKS BUGS FAQ CREDITS CHANGELOG ; do
+			[[ -s "${d}" ]] && dodoc "${d}"
+		done
+	elif [[ $(declare -p DOCS) == "declare -a "* ]] ; then
+		dodoc "${DOCS[@]}"
+	else
+		dodoc ${DOCS}
+	fi
+
+	# udev rules to get the right ownership/permission for /dev/g2d.
+	# Required for VDPAU OSD to work.
+    insinto /lib/udev/rules.d
+	doins "${FILESDIR}"/99-sunxi-g2d.rules
+}
+
+pkg_postinst() {
+	elog "You must be in the video group to have VDPAU OSD enabled."
+}
