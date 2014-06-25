@@ -1,0 +1,52 @@
+diff --git a/configure.ac b/configure.ac
+index 62d06e0..c59b257 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -683,17 +683,6 @@ if test "x$enable_opengl" = xno -a \
+     AC_MSG_ERROR([at least one API should be enabled])
+ fi
+ 
+-# Building OpenGL ES1 and/or ES2 without OpenGL is not supported on mesa 9.0.x
+-if test "x$enable_opengl" = xno -a \
+-        "x$enable_gles1" = xyes; then
+-    AC_MSG_ERROR([Building OpenGL ES1 without OpenGL is not supported])
+-fi
+-
+-if test "x$enable_opengl" = xno -a \
+-        "x$enable_gles2" = xyes; then
+-    AC_MSG_ERROR([Building OpenGL ES2 without OpenGL is not supported])
+-fi
+-
+ AM_CONDITIONAL(HAVE_OPENGL, test "x$enable_opengl" = xyes)
+ AM_CONDITIONAL(HAVE_OPENGL_ES1, test "x$enable_gles1" = xyes)
+ AM_CONDITIONAL(HAVE_OPENGL_ES2, test "x$enable_gles2" = xyes)
+diff --git a/src/gallium/targets/egl-static/Makefile.am b/src/gallium/targets/egl-static/Makefile.am
+index 90178f6..babd2f9 100644
+--- a/src/gallium/targets/egl-static/Makefile.am
++++ b/src/gallium/targets/egl-static/Makefile.am
+@@ -100,7 +100,7 @@ endif
+ if HAVE_OPENGL
+ AM_CPPFLAGS += \
+ 	-I$(top_srcdir)/src/mesa \
+-	-DFEATURE_GL=1
++	$(API_DEFINES)
+ 
+ egl_gallium_la_LIBADD += \
+ 	$(top_builddir)/src/mesa/libmesagallium.la
+@@ -131,16 +131,6 @@ st_GL_la_LIBADD = \
+ endif
+ endif
+ 
+-if HAVE_OPENGL_ES1
+-AM_CPPFLAGS += \
+-	-DFEATURE_ES1=1
+-endif
+-
+-if HAVE_OPENGL_ES2
+-AM_CPPFLAGS += \
+-	-DFEATURE_ES2=1
+-endif
+-
+ if HAVE_OPENVG
+ AM_CPPFLAGS += \
+ 	-I$(top_srcdir)/src/gallium/state_trackers/vega \
