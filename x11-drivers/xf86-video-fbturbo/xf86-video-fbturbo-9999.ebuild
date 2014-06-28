@@ -27,29 +27,26 @@ DEPEND="${RDEPEND}
 
 DOCS=( COPYING README xorg.conf "${FILESDIR}"/99-sunxi-g2d.rules )
 
-src_install() {
-	if [[ -f Makefile || -f GNUmakefile || -f makefile ]] ; then
-		emake DESTDIR="${D}" install
-	fi
+src_configure() {
+	econf
+}
 
-	if ! declare -p DOCS &>/dev/null ; then
-		local d
-		for d in README* ChangeLog AUTHORS NEWS TODO CHANGES \
-				THANKS BUGS FAQ CREDITS CHANGELOG ; do
-			[[ -s "${d}" ]] && dodoc "${d}"
-		done
-	elif [[ $(declare -p DOCS) == "declare -a "* ]] ; then
-		dodoc "${DOCS[@]}"
-	else
-		dodoc ${DOCS}
-	fi
+src_compile() {
+	emake ${MAKEOPTS}
+}
+
+src_install() {
+	emake DESTDIR="${D}" install
+
+	dodoc ${DOCS}
 
 	# udev rules to get the right ownership/permission for /dev/g2d.
-	# Required for VDPAU OSD to work.
-    insinto /lib/udev/rules.d
+	insinto "${ROOT%/}lib/udev/rules.d"
 	doins "${FILESDIR}"/99-sunxi-g2d.rules
 }
 
 pkg_postinst() {
+	elog
 	elog "You must be in the video group to have VDPAU OSD enabled."
+	elog
 }
