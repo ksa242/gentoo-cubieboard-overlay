@@ -15,6 +15,8 @@ SLOT="0"
 [[ ${PV} == *9999* ]] || KEYWORDS="~arm"
 IUSE=""
 
+RDEPEND="virtual/libusb:1"
+
 src_compile() {
 	emake "CC=${CHOST}-gcc"
 }
