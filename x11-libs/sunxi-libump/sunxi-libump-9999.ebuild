@@ -11,7 +11,7 @@ LICENSE="Apache-2.0"
 
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="static-libs"
 
 DEPEND=""
 
@@ -19,4 +19,12 @@ DOCS=( README )
 
 src_prepare() {
 	eautoreconf
+}
+
+src_install() {
+	default
+
+	prune_libtool_files --modules
+
+	use static-libs || find "${ED}" -name '*.a' -exec rm -f {} +
 }
