@@ -20,30 +20,20 @@ src_compile() {
 }
 
 src_install() {
-	if [[ -f Makefile || -f GNUmakefile || -f makefile ]] ; then
-		emake DESTDIR="${D}" install
-	fi
+	emake DESTDIR="${D}" install
 
-	if ! declare -p DOCS &>/dev/null ; then
-		local d
-		for d in README* ChangeLog AUTHORS NEWS TODO CHANGES \
-				THANKS BUGS FAQ CREDITS CHANGELOG ; do
-			[[ -s "${d}" ]] && dodoc "${d}"
-		done
-	elif [[ $(declare -p DOCS) == "declare -a "* ]] ; then
-		dodoc "${DOCS[@]}"
-	else
-		dodoc ${DOCS}
-	fi
+	dodoc ${DOCS}
 
 	# udev rules to get the right ownership/permission for /dev/cedar_dev and /dev/disp
-    insinto /lib/udev/rules.d
+	insinto "${ROOT%/}lib/udev/rules.d"
 	doins "${FILESDIR}"/99-sunxi-cedar-disp.rules
 }
 
 pkg_postinst() {
+	elog
 	elog "You must be in video group to use VDPAU video acceleration."
 	elog
 	elog "To enable VDPAU, set VDPAU_DRIVER environment variable to 'sunxi'."
 	elog "To enable VDPAU OSD, set VDPAU_OSD environment variable to '1'."
+	elog
 }
