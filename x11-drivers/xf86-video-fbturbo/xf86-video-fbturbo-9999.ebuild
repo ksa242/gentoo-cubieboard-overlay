@@ -27,18 +27,8 @@ DEPEND="${RDEPEND}
 
 DOCS=( COPYING README xorg.conf "${FILESDIR}"/99-sunxi-g2d.rules )
 
-src_configure() {
-	econf
-}
-
-src_compile() {
-	emake ${MAKEOPTS}
-}
-
 src_install() {
-	emake DESTDIR="${D}" install
-
-	dodoc ${DOCS}
+	xorg-2_src_install
 
 	# udev rules to get the right ownership/permission for /dev/g2d.
 	insinto "${ROOT%/}lib/udev/rules.d"
