@@ -26,7 +26,7 @@ src_prepare() {
 }
 
 src_configure() {
-	emake config
+	emake ABI=armhf config
 	MALI_LIBS_ABI=`grep LIBS_ABI config.mk | awk '{ print $3 }'`
 	MALI_VERSION=` grep VERSION  config.mk | awk '{ print $3 }'`
 	MALI_EGL_TYPE=`grep EGL_TYPE config.mk | awk '{ print $3 }'`
