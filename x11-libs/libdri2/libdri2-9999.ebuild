@@ -24,3 +24,7 @@ DOCS=( COPYING README )
 src_prepare() {
 	eautoreconf
 }
+
+pkg_preinst() {
+	prune_libtool_files
+}
