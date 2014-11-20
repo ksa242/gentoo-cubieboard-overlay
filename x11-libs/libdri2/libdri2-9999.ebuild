@@ -25,6 +25,9 @@ src_prepare() {
 	eautoreconf
 }
 
-pkg_preinst() {
-	prune_libtool_files
+src_install() {
+	emake DESTDIR="${D}" install
+	prune_libtool_files --all
+
+	dodoc "${DOCS[@]}"
 }
