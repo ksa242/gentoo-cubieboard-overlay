@@ -26,8 +26,6 @@ src_prepare() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	default
 	prune_libtool_files --all
-
-	dodoc "${DOCS[@]}"
 }
