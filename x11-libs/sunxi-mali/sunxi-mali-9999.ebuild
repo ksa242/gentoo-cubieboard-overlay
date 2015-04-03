@@ -133,9 +133,10 @@ src_install() {
 pkg_postinst() {
 	elog "You must be in the video group to use the Mali 3D acceleration."
 	elog
-	elog "To use the Mali OpenGL ES libraries, run \"eselect opengl set mali\""
+	elog 'To use the Mali OpenGL ES libraries, run "eselect opengl set mali"'
 	elog
-	elog "Some packages, for example x11-apps/mesa-progs and x11-libs/cairo, probably would not build due to missing libGL and/or GL headers."
+	elog "Some packages, for example x11-apps/mesa-progs and x11-libs/cairo,"
+	elog "probably would not build due to missing libGL and/or GL headers."
 }
 
 pkg_prerm() {
