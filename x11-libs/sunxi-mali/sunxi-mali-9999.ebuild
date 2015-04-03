@@ -12,7 +12,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	>=app-admin/eselect-opengl-1.2.6
+	>=app-eselect/eselect-opengl-1.2.6
 	x11-libs/sunxi-libump
 	x11-libs/libdri2"
 RDEPEND="${DEPEND}
