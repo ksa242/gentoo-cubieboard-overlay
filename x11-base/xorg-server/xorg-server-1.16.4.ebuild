@@ -15,8 +15,8 @@ KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-f
 IUSE_SERVERS="dmx kdrive xnest xorg xvfb"
 IUSE="${IUSE_SERVERS} glamor ipv6 minimal nptl +opengl selinux +suid systemd tslib +udev unwind wayland"
 
-CDEPEND=">=app-admin/eselect-opengl-1.0.8
-	!>=app-admin/eselect-opengl-1.3.0
+CDEPEND=">=app-eselect/eselect-opengl-1.0.8
+	!>=app-eselect/eselect-opengl-1.3.0
 	dev-libs/openssl
 	media-libs/freetype
 	>=x11-apps/iceauth-1.0.2
