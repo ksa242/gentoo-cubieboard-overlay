@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="sunxi_board_cubieboard">u-boot for Cubieboard</flag>
+		<flag name="sunxi_board_cubieboard2">u-boot for Cubieboard 2</flag>
+		<flag name="sunxi_board_cubietruck">u-boot for Cubietruck</flag>
+	</use>
+</pkgmetadata>
