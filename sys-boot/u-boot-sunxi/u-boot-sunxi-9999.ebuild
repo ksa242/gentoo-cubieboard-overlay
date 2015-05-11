@@ -25,6 +25,10 @@ src_prepare() {
 }
 
 src_configure() {
+	# Unset a few KBUILD variables. Bug #540476
+	unset KBUILD_OUTPUT KBUILD_SRC
+
+	local board
 	if use sunxi_board_cubieboard; then
 		board="Cubieboard"
 	elif use sunxi_board_cubieboard2; then
@@ -34,11 +38,12 @@ src_configure() {
 	else
 		die "Please choose your board."
 	fi
+
 	emake ${board}_config
 }
 
 src_install() {
-	insinto "/usr/share/${PF}"     && doins u-boot-sunxi-with-spl.bin u-boot.bin
-	insinto "/usr/share/${PF}/spl" && doins spl/sunxi-spl.bin
+	insinto "/usr/share/${PF}"
+	doins u-boot-sunxi-with-spl.bin
 	dodoc doc/README.* "${FILESDIR}/installing-u-boot.txt"
 }
