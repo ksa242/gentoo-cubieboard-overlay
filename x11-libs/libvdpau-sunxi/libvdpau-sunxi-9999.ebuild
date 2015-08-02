@@ -25,7 +25,7 @@ src_install() {
 	dodoc ${DOCS}
 
 	# udev rules to get the right ownership/permission for /dev/cedar_dev and /dev/disp
-	insinto "${ROOT%/}lib/udev/rules.d"
+	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/99-sunxi-cedar-disp.rules
 }
 

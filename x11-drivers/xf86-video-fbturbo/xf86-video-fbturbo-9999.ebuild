@@ -31,7 +31,7 @@ src_install() {
 	xorg-2_src_install
 
 	# udev rules to get the right ownership/permission for /dev/g2d.
-	insinto "${ROOT%/}lib/udev/rules.d"
+	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/99-sunxi-g2d.rules
 }
 
