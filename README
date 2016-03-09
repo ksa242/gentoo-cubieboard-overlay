@@ -15,6 +15,10 @@ sys-boot/u-boot-sunxi
     Homepage:    https://github.com/linux-sunxi/u-boot-sunxi
     Description: u-boot for Allwinner sunxi series of SoCs (A10, A13, A10s, and A20)
 
+sys-boot/u-boot-sunxi-mainline
+    Homepage:    http://www.denx.de/wiki/U-Boot/WebHome
+    Description: Das U-Boot (mainline variant)
+
 sys-kernel/cubieboard-sources
     Homepage:    https://github.com/cubieboard/linux-sunxi
     Description: Linux source for Allwinner/Boxchip F20 (sun3i), A10 (sun4i) and A12/A13 (sun5i) SoCs
@@ -33,6 +37,10 @@ x11-base/xorg-server
 x11-drivers/xf86-video-fbturbo
     Homepage:    https://github.com/ssvb/xf86-video-fbturbo
     Description: Xorg DDX driver for Allwinner A10/A13 and other ARM devices
+
+x11-libs/libcedrus
+    Homepage:    https://github.com/linux-sunxi/libcedrus
+    Description: Low-level access to the video engine of Allwinner sunxi SoCs
 
 x11-libs/libdri2
     Homepage:    https://github.com/robclark/libdri2
