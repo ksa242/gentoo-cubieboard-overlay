@@ -1,0 +1,11 @@
+--- a/audio/out/ao_alsa.c
++++ b/audio/out/ao_alsa.c
+@@ -702,7 +702,7 @@
+     err = snd_pcm_hw_params_get_period_size(alsa_hwparams, &p->outburst, NULL);
+     CHECK_ALSA_ERROR("Unable to get period size");
+ 
+-    p->can_pause = snd_pcm_hw_params_can_pause(alsa_hwparams);
++    p->can_pause = 0;
+ 
+     snd_pcm_sw_params_t *alsa_swparams;
+     snd_pcm_sw_params_alloca(&alsa_swparams);
