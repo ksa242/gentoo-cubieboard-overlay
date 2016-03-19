@@ -32,4 +32,5 @@ RDEPEND="|| (
 		sys-kernel/zen-sources
 		sys-kernel/aufs-sources
 		sys-kernel/cubieboard-sources
+		sys-kernel/sunxi-sources
 	)"
