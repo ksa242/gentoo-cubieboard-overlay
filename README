@@ -7,10 +7,6 @@ dev-embedded/sunxi-tools
     Homepage:    https://github.com/linux-sunxi/sunxi-tools
     Description: Tools to help hacking Allwinner A10 devices
 
-dev-embedded/u-boot-tools
-    Homepage:    http://www.denx.de/wiki/U-Boot/WebHome
-    Description: utilities for working with Das U-Boot
-
 media-libs/mesa
     Homepage:    http://mesa3d.sourceforge.net/
     Description: OpenGL-like graphic library for Linux
