@@ -19,10 +19,6 @@ sys-boot/u-boot-sunxi-mainline
     Homepage:    http://www.denx.de/wiki/U-Boot/WebHome
     Description: Das U-Boot (mainline variant)
 
-sys-kernel/cubieboard-sources
-    Homepage:    https://github.com/cubieboard/linux-sunxi
-    Description: Linux source for Allwinner/Boxchip F20 (sun3i), A10 (sun4i) and A12/A13 (sun5i) SoCs
-
 sys-kernel/sunxi-sources
     Homepage:    https://github.com/linux-sunxi/linux-sunxi
     Description: Linux source for Allwinner/Boxchip F20 (sun3i), A10 (sun4i), A12/A13/A10S (sun5i) and A20 (sun7i) SoCs
