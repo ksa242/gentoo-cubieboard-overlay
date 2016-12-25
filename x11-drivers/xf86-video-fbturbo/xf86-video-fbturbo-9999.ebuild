@@ -8,9 +8,7 @@ DESCRIPTION="Xorg DDX driver for Allwinner A10/A13/A20 and other ARM devices"
 HOMEPAGE="https://github.com/ssvb/xf86-video-fbturbo"
 
 KEYWORDS=""
-IUSE="gles1 gles2 -mali-r3p2"
-
-use mali-r3p2 && EGIT_BRANCH="mali-r3p2-support"
+IUSE="gles1 gles2"
 
 RDEPEND="x11-base/xorg-server"
 DEPEND="${RDEPEND}
