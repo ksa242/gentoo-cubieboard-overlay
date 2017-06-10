@@ -18,6 +18,8 @@ IUSE_SUNXI_BOARD="
 IUSE="savedconfig ${IUSE_SUNXI_BOARD}"
 REQUIRED_USE="^^ ( ${IUSE_SUNXI_BOARD} )"
 
+DEPEND=">=sys-apps/dtc-1.4
+		sys-devel/bc"
 RDEPEND="~dev-embedded/u-boot-tools-${PV}"
 
 S=${WORKDIR}/${MY_P}
